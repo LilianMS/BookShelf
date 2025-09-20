@@ -1,0 +1,72 @@
+[
+  {
+    "id": "1",
+    "title": "O Programador Apaixonado",
+    "author": "Fowler Chad",
+    "publisher":"Casa do Codigo", 
+    "genre": "Tecnologia",
+    "year": 2014,
+    "pages": 255,
+    "language":"Português", 
+    "rating": 4,
+    "synopsis": "Para ter sucesso no mercado de TI atual, é preciso ver sua carreira como se fosse um negócio. Neste livro, você vai aprender a empreender com a sua carreira e levá-la para o caminho que você escolheu: o do sucesso. Neste livro, Chad Fowler, famoso desenvolvedor de software e autor de diversos livros, ensina a construir sua carreira na área de desenvolvimento, passo a passo, seguindo o mesmo caminho de que se você estivesse criando e vendendo um produto. Afinal de contas, suas habilidades são um produto",
+    "cover": "https://m.media-amazon.com/images/I/81dBiDT7qTL._SL1500_.jpg",
+    "status": "LENDO"
+  },
+  {
+    "id": "2",
+     "title": "Entendendo Algoritmos",
+    "author": "Aditya Y. Bhargava",
+    "publisher":"Novatec",
+    "genre": "Tecnologia",
+    "year": 2017,
+    "pages": 264,
+    "language":"Português",
+    "rating": 5,
+    "synopsis": "O livro Entendendo Algoritmos apresenta uma abordagem agradável para esse tópico essencial da ciência da computação. Nele, você aprenderá como aplicar algoritmos comuns nos problemas de programação enfrentados diariamente. Você começará com tarefas básicas como a ordenação e a pesquisa. Com a prática, você enfrentará problemas mais complexos, como a compressão de dados e a inteligência artificial. Cada exemplo é apresentado em detalhes e inclui diagramas e códigos completos em Python. Ao final deste livro, você terá dominado algoritmos amplamente aplicáveis e saberá quando e onde utilizá-los...",
+    "cover": "https://m.media-amazon.com/images/I/71Vkg7GfPFL._SL1296_.jpg",
+    "status": "LIDO"
+  },
+  {
+    "id": "3",
+    "title": "O Pequeno Príncipe",
+    "author": "Antoine de Saint-Exupéry",
+    "publisher":"HarperCollins",
+    "genre": "Infantil",
+    "year": 2018,
+    "pages": 96,
+    "language":"Português",
+    "rating": 5,
+    "synopsis": "Um livro para todos os públicos, O pequeno príncipe é uma obra atemporal, com metáforas pertinentes e aprendizados sobre afeto, sonhos, esperança e tudo aquilo que é invisível aos olhos. ",
+    "cover": "https://m.media-amazon.com/images/I/81TmOZIXvzL._SL1500_.jpg",
+    "status": "QUERO-LER"
+  },
+  {
+    "id": "4",
+    "title": "Iracema",
+    "author": "Jose de Alencar",
+    "publisher":"Principis",
+    "genre":"Literatura Brasileira",
+    "year": 2022,
+    "pages": 128,
+    "language":"Português",
+    "rating": 3,
+    "synopsis": "A pitiguara Iracema, a 'virgem dos lábios de mel', encontra nas florestas da orla cearense o português Martim. Uma espécie de poema em prosa, o conturbado amor proibido mostra o conflito histórico entre tribos indígenas e europeus e revela, com lirismo e aventura, a contradição e o embate entre civilizações.",
+    "cover": "https://m.media-amazon.com/images/I/71LCDi6E2oL._SL1500_.jpg",
+    "status": "QUERO-LER"
+  },
+  {
+    "id": "5",
+    "title": "Dom Casmurro",
+    "author": "Machado de Assis",
+    "publisher":"Principis",
+    "genre": "Literatura Brasileira",
+    "year": 1899,
+    "pages": 240,
+    "language":"Português",
+    "rating": 5,
+    "synopsis": "O livro é narrado por Bentinho, que, na velhice, relata sua história e a de seu grande amor, Capitu...",
+    "cover": "https://m.media-amazon.com/images/I/61x1ZHomWUL._SL1200_.jpg",
+    "status": "LIDO"
+  }
+]
