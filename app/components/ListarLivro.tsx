@@ -79,7 +79,7 @@ export default function ListarLivro({ books }: ListarLivroProps) {
                 <Button variant="secondary" className="flex-1">
                   Editar
                 </Button>
-                <Button variant="destructive" className="flex-1">
+                <Button variant="secondary" className="flex-1">
                   Excluir
                 </Button>
               </div>
