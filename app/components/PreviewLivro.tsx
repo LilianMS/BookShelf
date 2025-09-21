@@ -31,7 +31,7 @@ export function PreviewLivro({ book }: PreviewLivroProps) {
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-3">
           {/* Coluna da Capa */}
-          <div className="md:col-span-1 bg-gray-50 flex items-center justify-center p-6 md:p-8">
+          <div className="md:col-span-1 bg-gray-50 flex items-start justify-center p-8 pt-14">
             <img
               src={book.cover}
               alt={`Capa do livro ${book.title}`}
