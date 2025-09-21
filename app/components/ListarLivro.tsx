@@ -69,7 +69,7 @@ export default function ListarLivro({ books }: ListarLivroProps) {
                 <StarRating rating={book.rating} />
               </div>
             </CardContent>
-            <CardFooter className="p-4 bg-gray-50 border-t">
+            <CardFooter className="p-4 bg-gray-60 border-t">
               <div className="w-full flex justify-between gap-2">
                 <Link href={`/livros/${book.id}`} passHref className="flex-1">
                   <Button variant="outline" className="w-full">
