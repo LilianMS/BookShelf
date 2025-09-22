@@ -8,7 +8,7 @@ import "./test-tailwind.css";
 import { Button } from "@/components/ui/button";
 
 // Importando ButtonFixed (nossa solução)
-import { ButtonFixed } from "@/components/ui/button-fixed";
+import { ButtonFixed } from "@/app/lab-shadcn/button-fixed";
 
 // Importando NOSSOS componentes do laboratório
 import { 
