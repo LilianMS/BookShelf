@@ -5,9 +5,9 @@ import booksData from "@/data/books.json";
 import { Book } from "@/types/books";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 function getBookById(id: string): Book | undefined {
@@ -15,8 +15,8 @@ function getBookById(id: string): Book | undefined {
   return (booksData as Book[]).find((book) => book.id === id);
 }
 
-export default function BookDetailPage({ params }: PageProps) {
-  const { id } = params;
+export default async function BookDetailPage({ params }: PageProps) {
+  const { id } = await params;
   const book = getBookById(id);
 
   if (!book) {
