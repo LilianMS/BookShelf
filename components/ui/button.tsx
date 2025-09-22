@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
+import { Save, Trash2, Plus, Edit, Eye, Download, Upload, Check, X, ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -27,18 +28,66 @@ const buttonVariants = cva(
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
         icon: "size-9",
       },
+      cursor: {
+        default: "cursor-pointer",
+        pointer: "cursor-pointer",
+        wait: "cursor-wait",
+        "not-allowed": "cursor-not-allowed",
+        help: "cursor-help",
+        grab: "cursor-grab",
+        grabbing: "cursor-grabbing",
+        crosshair: "cursor-crosshair",
+        text: "cursor-text",
+        move: "cursor-move",
+        "zoom-in": "cursor-zoom-in",
+        "zoom-out": "cursor-zoom-out",
+      },
+      iconVariant: {
+        none: "",
+        save: "",
+        delete: "",
+        add: "",
+        edit: "",
+        view: "",
+        download: "",
+        upload: "",
+        confirm: "",
+        cancel: "",
+        back: "",
+        forward: "",
+      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
+      cursor: "default",
+      iconVariant: "none",
     },
   }
 )
+
+// Mapeamento dos ícones
+const iconMap = {
+  save: Save,
+  delete: Trash2,
+  add: Plus,
+  edit: Edit,
+  view: Eye,
+  download: Download,
+  upload: Upload,
+  confirm: Check,
+  cancel: X,
+  back: ArrowLeft,
+  forward: ArrowRight,
+} as const
 
 function Button({
   className,
   variant,
   size,
+  cursor,
+  iconVariant,
+  children,
   asChild = false,
   ...props
 }: React.ComponentProps<"button"> &
@@ -46,13 +95,19 @@ function Button({
     asChild?: boolean
   }) {
   const Comp = asChild ? Slot : "button"
+  
+  // Seleciona o ícone baseado na variante
+  const IconComponent = iconVariant && iconVariant !== "none" ? iconMap[iconVariant as keyof typeof iconMap] : null
 
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size, cursor, iconVariant }), className)}
       {...props}
-    />
+    >
+      {IconComponent && <IconComponent size={16} />}
+      {children}
+    </Comp>
   )
 }
 
