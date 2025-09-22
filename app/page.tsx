@@ -1,39 +1,46 @@
 "use client";
 
+import DashboardCard from "./components/DashboardCard";
+
 export default function Home() {
   return (
    <div className="flex flex-col min-h-screen bg-gray-50">
-      <main className="flex-1 p-8">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8 text-gray-800">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 lg:mb-8 text-gray-800">
             Dashboard de Leitura
           </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-700">Total de Livros</h2>
-              <p className="text-4xl font-bold text-blue-600 mt-2">24</p>
-              <p className="text-sm text-green-500 mt-1">+10% em relação ao mês anterior</p>
-            </div>
+            <DashboardCard
+              title="Total de Livros"
+              value={24}
+              description="+10% em relação ao mês anterior"
+              valueColor="text-blue-600"
+              descriptionColor="text-green-500"
+            />
 
-            <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-700">Sendo Lidos</h2>
-              <p className="text-4xl font-bold text-yellow-500 mt-2">5</p>
-              <p className="text-sm text-gray-500 mt-1">Comece um novo livro hoje!</p>
-            </div>
+            <DashboardCard
+              title="Sendo Lidos"
+              value={5}
+              description="Comece um novo livro hoje!"
+              valueColor="text-yellow-500"
+            />
 
-            <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-700">Livros Finalizados</h2>
-              <p className="text-4xl font-bold text-green-600 mt-2">19</p>
-              <p className="text-sm text-gray-500 mt-1">Parabéns pelas leituras!</p>
-            </div>
+            <DashboardCard
+              title="Livros Finalizados"
+              value={19}
+              description="Parabéns pelas leituras!"
+              valueColor="text-green-600"
+            />
 
-            <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-700">Páginas Lidas</h2>
-              <p className="text-4xl font-bold text-purple-600 mt-2">5,676</p>
-              <p className="text-sm text-gray-500 mt-1">Continue a jornada!</p>
-            </div>
+            <DashboardCard
+              title="Páginas Lidas"
+              value="5,676"
+              description="Continue a jornada!"
+              valueColor="text-purple-600"
+            />
           </div>
         </div>
       </main>
