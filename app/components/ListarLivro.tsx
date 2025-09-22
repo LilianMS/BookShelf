@@ -53,35 +53,37 @@ export default function ListarLivro({ books }: ListarLivroProps) {
               <img
                 src={book.cover}
                 alt={`Capa do livro ${book.title}`}
-                className="w-full h-64 object-cover"
+                className="w-full h-48 sm:h-64 object-cover"
               />
             </CardHeader>
-            <CardContent className="p-4 flex-grow bg-card">
+            <CardContent className="p-3 sm:p-4 flex-grow bg-card">
               <span className="inline-block bg-primary/10 text-primary text-xs font-semibold mb-2 px-2.5 py-0.5 rounded-full border border-primary/20">
                 {book.genre}
               </span>
               <CardTitle className="text-lg font-bold text-card-foreground">
                 {book.title}
               </CardTitle>
-              <p className="text-sm text-muted-foreground mt-1">por {book.author}</p>
+              <p className="text-base sm:text-lg font-bold text-card-foreground">por {book.author}</p>
               <p className="text-xs text-muted-foreground mt-2">Ano: {book.year}</p>
               <div className="mt-2">
                 <StarRating rating={book.rating} />
               </div>
             </CardContent>
-            <CardFooter className="p-4 bg-muted/30 border-t border-border">
-              <div className="w-full flex justify-between gap-2">
-                <Link href={`/livros/${book.id}`} passHref className="flex-1">
-                  <Button variant="outline" className="w-full">
+            <CardFooter className="p-3 sm:p-4 bg-muted/30 border-t border-border">
+              <div className="w-full flex flex-col sm:flex-row gap-2 sm:gap-3">
+                <Link href={`/livros/${book.id}`} passHref className="w-full sm:flex-1">
+                  <Button variant="outline" className="w-full" size="sm">
                     Visualizar
                   </Button>
                 </Link>
-                <Button variant="secondary" className="flex-1">
-                  Editar
-                </Button>
-                <Button variant="destructive" className="flex-1">
-                  Excluir
-                </Button>
+                
+                {/* Agrupamento dos botões secundários */}
+                <div className="flex gap-2">
+                  <Button variant="secondary" className="flex-1 sm:flex-none" size="sm">
+                    Editar
+                  </Button>
+                  <Button variant="destructive" cursor="pointer" size="sm" className="px-3" iconVariant="delete" />
+                </div>
               </div>
             </CardFooter>
           </Card>
