@@ -1,31 +1,75 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* CSS Variables globais do shadcn/ui */
+/*
+ * ====================================================================
+ * CONFIGURAÇÃO DO SISTEMA SHADCN/UI
+ * ====================================================================
+ * 
+ * PROBLEMA ORIGINAL:
+ * O componente Button do shadcn/ui não funcionava corretamente.
+ * Especificamente, variant="destructive" não ficava vermelho.
+ * 
+ * CAUSA RAIZ:
+ * shadcn/ui usa um sistema de CSS Variables + classes personalizadas.
+ * O componente gera classe "bg-destructive", mas essa classe não existia.
+ * 
+ * FLUXO DO PROBLEMA:
+ * 1. <Button variant="destructive"> 
+ * 2. → Gera classe "bg-destructive"
+ * 3. → Tailwind procura .bg-destructive
+ * 4. → ❌ NÃO ENCONTRA → Sem cor aplicada
+ * 
+ * SOLUÇÃO IMPLEMENTADA:
+ * 1. Definir CSS Variables (dados das cores)
+ * 2. Criar classes CSS que mapeiam essas variáveis
+ * 3. Permitir que shadcn/ui funcione corretamente
+ * 
+ * RESULTADO:
+ * ✅ variant="destructive" → bg-destructive → hsl(0 84.2% 60.2%) → VERMELHO
+ * ✅ Todos os outros variants também funcionam
+ * ✅ Sistema preparado para tema claro/escuro
+ */
+
+/* 
+ * STEP 1: CSS Variables (Design Tokens)
+ * Estas variáveis armazenam as cores em formato HSL sem hsl()
+ * Exemplo: --destructive: 0 84.2% 60.2% (vermelho)
+ */
 :root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  --primary: 240 9% 17%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 240 5.9% 10%;
-  --radius: 0.5rem;
+  --background: 0 0% 100%;              /* Fundo branco */
+  --foreground: 240 10% 3.9%;           /* Texto escuro */
+  --card: 0 0% 100%;                    /* Fundo dos cards */
+  --card-foreground: 240 10% 3.9%;      /* Texto dos cards */
+  --popover: 0 0% 100%;                 /* Fundo dos popovers */
+  --popover-foreground: 240 10% 3.9%;   /* Texto dos popovers */
+  --primary: 240 9% 17%;                /* Cor primária (cinza escuro) */
+  --primary-foreground: 0 0% 98%;       /* Texto na cor primária */
+  --secondary: 240 4.8% 95.9%;          /* Cor secundária (cinza claro) */
+  --secondary-foreground: 240 5.9% 10%; /* Texto na cor secundária */
+  --muted: 240 4.8% 95.9%;              /* Cor mutada/suave */
+  --muted-foreground: 240 3.8% 46.1%;   /* Texto mutado */
+  --accent: 240 4.8% 95.9%;             /* Cor de destaque */
+  --accent-foreground: 240 5.9% 10%;    /* Texto de destaque */
+  --destructive: 0 84.2% 60.2%;         /* ⭐ COR VERMELHA (era o problema!) */
+  --destructive-foreground: 0 0% 98%;   /* Texto branco no vermelho */
+  --border: 240 5.9% 90%;               /* Cor das bordas */
+  --input: 240 5.9% 90%;                /* Cor dos inputs */
+  --ring: 240 5.9% 10%;                 /* Cor do ring/focus */
+  --radius: 0.5rem;                     /* Raio das bordas */
 }
 
-/* Classes que o shadcn/ui espera */
+/*
+ * STEP 2: Classes CSS que conectam as variáveis ao Tailwind
+ * Estas classes fazem a "ponte" entre shadcn/ui e as CSS Variables
+ * 
+ * COMO FUNCIONA:
+ * - shadcn/ui gera: className="bg-destructive"
+ * - CSS aplica: background-color: hsl(var(--destructive))
+ * - Resultado: hsl(0 84.2% 60.2%) = vermelho
+ */
+
+/* ⭐ CLASSE PRINCIPAL que resolve o problema do botão vermelho */
 .bg-destructive {
   background-color: hsl(var(--destructive));
 }
@@ -34,10 +78,12 @@
   color: hsl(var(--destructive-foreground));
 }
 
+/* Efeito hover para botões destructive */
 .hover\:bg-destructive\/90:hover {
   background-color: hsl(var(--destructive) / 0.9);
 }
 
+/* Classes para variant="default" (primary) */
 .bg-primary {
   background-color: hsl(var(--primary));
 }
@@ -54,6 +100,7 @@
   background-color: hsl(var(--primary) / 0.9);
 }
 
+/* Classes para variant="secondary" */
 .bg-secondary {
   background-color: hsl(var(--secondary));
 }
@@ -66,6 +113,7 @@
   background-color: hsl(var(--secondary) / 0.8);
 }
 
+/* Classes para layout geral e sistema de cores */
 .bg-background {
   background-color: hsl(var(--background));
 }
@@ -94,7 +142,10 @@
   border-color: hsl(var(--border));
 }
 
-/* Classes utilitárias extras */
+/*
+ * STEP 3: Classes utilitárias extras
+ * Outras classes que complementam o sistema
+ */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -103,8 +154,33 @@
   overflow: hidden;
 }
 
+/*
+ * STEP 4: Estilo base do body
+ * Aplica as cores do sistema ao elemento raiz
+ */
 body {
   font-family: system-ui, sans-serif;
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
 }
+
+/*
+ * ====================================================================
+ * RESUMO DA SOLUÇÃO:
+ * ====================================================================
+ * 
+ * ✅ ANTES: <Button variant="destructive"> → sem cor
+ * ✅ DEPOIS: <Button variant="destructive"> → vermelho
+ * 
+ * BENEFÍCIOS ADICIONAIS:
+ * - Sistema de cores unificado
+ * - Preparado para tema escuro
+ * - Consistência visual
+ * - Todos os componentes shadcn/ui funcionam
+ * 
+ * ARQUIVOS AFETADOS:
+ * - ✅ globals.css (este arquivo)
+ * - ✅ ListarLivro.tsx (botão Excluir funciona)
+ * - ✅ Qualquer componente shadcn/ui futuro
+ */
+
