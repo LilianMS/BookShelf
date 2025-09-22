@@ -47,7 +47,7 @@ export default function ListarLivro({ books }: ListarLivroProps) {
         {books.map((book) => (
           <Card
             key={book.id}
-            className="flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            className="flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-card border-border"
           >
             <CardHeader className="p-0">
               <img
@@ -56,20 +56,20 @@ export default function ListarLivro({ books }: ListarLivroProps) {
                 className="w-full h-64 object-cover"
               />
             </CardHeader>
-            <CardContent className="p-4 flex-grow">
-              <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold mb-2 px-2.5 py-0.5 rounded-full">
+            <CardContent className="p-4 flex-grow bg-card">
+              <span className="inline-block bg-primary/10 text-primary text-xs font-semibold mb-2 px-2.5 py-0.5 rounded-full border border-primary/20">
                 {book.genre}
               </span>
-              <CardTitle className="text-lg font-bold text-gray-800">
+              <CardTitle className="text-lg font-bold text-card-foreground">
                 {book.title}
               </CardTitle>
-              <p className="text-sm text-gray-600 mt-1">por {book.author}</p>
-              <p className="text-xs text-gray-500 mt-2">Ano: {book.year}</p>
+              <p className="text-sm text-muted-foreground mt-1">por {book.author}</p>
+              <p className="text-xs text-muted-foreground mt-2">Ano: {book.year}</p>
               <div className="mt-2">
                 <StarRating rating={book.rating} />
               </div>
             </CardContent>
-            <CardFooter className="p-4 bg-gray-60 border-t">
+            <CardFooter className="p-4 bg-muted/30 border-t border-border">
               <div className="w-full flex justify-between gap-2">
                 <Link href={`/livros/${book.id}`} passHref className="flex-1">
                   <Button variant="outline" className="w-full">
@@ -79,7 +79,7 @@ export default function ListarLivro({ books }: ListarLivroProps) {
                 <Button variant="secondary" className="flex-1">
                   Editar
                 </Button>
-                <Button variant="secondary" className="flex-1">
+                <Button variant="destructive" className="flex-1">
                   Excluir
                 </Button>
               </div>
