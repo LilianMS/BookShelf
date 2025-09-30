@@ -30,7 +30,7 @@ export interface Book {
   language:string;
   rating:number;
   synopsis:string;
-  cover:string;
+  cover?:string;
   status:bookStatus;
 
 }
