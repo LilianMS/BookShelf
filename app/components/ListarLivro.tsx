@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link";
+import Image from "next/image";
 import { Book } from "@/types/books";
 import {
   Card,
@@ -10,13 +11,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface ListarLivroProps {
   books: Book[];
 }
 
-// Componente para exibir estrelas de avaliação
 const StarRating = ({ rating }: { rating: number }) => {
   const stars = [];
   for (let i = 1; i <= 5; i++) {
@@ -40,17 +40,9 @@ export default function ListarLivro({ books }: ListarLivroProps) {
   const filterBooks = books.filter((book) => {
     const matchesSearch = book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       book.author.toLowerCase().includes(searchTerm.toLowerCase());
-      // ||
-      // book.genre.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesGenre = selectedGenre === '' || book.genre === selectedGenre;
     return matchesSearch && matchesGenre;
   });
-
-  // / Debug: log searchTerm sempre que mudar
-  useEffect(() => {
-    console.debug("searchTerm:", searchTerm);
-  }, [searchTerm]);
-
 
   return (
     <div className="container mx-auto p-4">
@@ -87,9 +79,11 @@ export default function ListarLivro({ books }: ListarLivroProps) {
             className="flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-card border-border"
           >
             <CardHeader className="p-0">
-              <img
-                src={book.cover}
+              <Image
+                src={book.cover ?? "/default-cover.jpg"}
                 alt={`Capa do livro ${book.title}`}
+                width={300}
+                height={400}
                 className="w-full h-48 sm:h-64 object-cover"
               />
             </CardHeader>
