@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button"
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { ThemeToggleButton } from "./ThemeToggleButton";
 
 
 const navLinks = [
@@ -18,16 +19,16 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b bg-green-200/95 shadow-md backdrop-blur supports-[backdrop-filter]:bg-green-200/60">
+      <header className="sticky top-0 z-50 w-full bg-green-50/95 dark:bg-green-950/95 shadow-md backdrop-blur border-b border-green-200/50 dark:border-green-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-          <Link href="/" className="text-xl sm:text-2xl font-bold text-green-900 transition-colors duration-300 hover:text-green-600">
+          <Link href="/" className="text-xl sm:text-2xl font-bold text-green-800 dark:text-green-200 transition-colors duration-300 hover:text-green-600 dark:hover:text-green-300">
             Leafly 🌿
           </Link>
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="md:hidden text-green-700 dark:text-green-300 hover:text-green-900 dark:hover:text-green-100"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -37,8 +38,8 @@ export default function Navbar() {
               <Link key={link.href} href={link.href}>
                 <Button
                   variant="ghost"
-                  className={`text-green-800 hover:text-green-950 font-medium transition-colors duration-300 ${pathname === link.href
-                      ? "underline decoration-2 underline-offset-4"
+                  className={`text-green-700 dark:text-green-300 hover:text-green-900 dark:hover:text-green-100 font-medium transition-colors duration-300 ${pathname === link.href
+                      ? "underline decoration-2 underline-offset-4 text-green-900 dark:text-green-100"
                       : ""
                     }`}
                 >
@@ -46,7 +47,8 @@ export default function Navbar() {
                 </Button>
               </Link>
             ))}
-            <Button className="bg-green-600 hover:bg-green-700 text-white transition-colors duration-300">
+            <ThemeToggleButton variant="navbar" />
+            <Button className="bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-600 text-white transition-colors duration-300">
               Adicionar Livro
             </Button>
           </nav>
@@ -66,14 +68,14 @@ function MobileMenu({ pathname, setIsMobileMenuOpen }: { pathname: string; setIs
   return (
     <>  
       {isLocalMobileMenuOpen && (
-        <div className="md:hidden border-t bg-green-200 px-4 py-2 space-y-2">
+        <div className="md:hidden border-t border-green-200/50 dark:border-green-800/50 bg-green-50/95 dark:bg-green-950/95 px-4 py-3 space-y-2">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`block py-3 px-2 rounded-md transition-colors ${pathname === link.href
-                  ? "bg-green-300 font-semibold text-green-900"
-                  : "text-green-800 hover:bg-green-300/50"
+              className={`block py-3 px-3 rounded-md transition-colors text-base ${pathname === link.href
+                  ? "bg-green-200 dark:bg-green-800 font-semibold text-green-900 dark:text-green-100"
+                  : "text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/50 active:bg-green-200 dark:active:bg-green-800"
                 }`}
               onClick={() => {
                 setIsLocalMobileMenuOpen(false);
@@ -84,7 +86,7 @@ function MobileMenu({ pathname, setIsMobileMenuOpen }: { pathname: string; setIs
             </Link>
           ))}
           <Button
-            className="w-full mt-2 bg-green-600 hover:bg-green-700 text-white"
+            className="w-full mt-3 py-3 bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-600 text-white text-base font-medium"
             onClick={() => {
               setIsLocalMobileMenuOpen(false);
               setIsMobileMenuOpen(false);

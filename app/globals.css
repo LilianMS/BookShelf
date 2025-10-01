@@ -36,27 +36,57 @@
  * Estas variáveis armazenam as cores em formato HSL sem hsl()
  * Exemplo: --destructive: 0 84.2% 60.2% (vermelho)
  */
+/* 
+ * LIGHT MODE (Tema Claro) - OTIMIZADO PARA LEITURA
+ * 🌅 Cores creme/sépia para reduzir fadiga ocular em telas pequenas
+ */
 :root {
-  --background: 0 0% 100%;              /* Fundo branco */
-  --foreground: 240 10% 3.9%;           /* Texto escuro */
-  --card: 0 0% 100%;                    /* Fundo dos cards */
-  --card-foreground: 240 10% 3.9%;      /* Texto dos cards */
-  --popover: 0 0% 100%;                 /* Fundo dos popovers */
-  --popover-foreground: 240 10% 3.9%;   /* Texto dos popovers */
-  --primary: 240 9% 17%;                /* Cor primária (cinza escuro) */
-  --primary-foreground: 0 0% 98%;       /* Texto na cor primária */
-  --secondary: 240 4.8% 95.9%;          /* Cor secundária (cinza claro) */
-  --secondary-foreground: 240 5.9% 10%; /* Texto na cor secundária */
-  --muted: 240 4.8% 95.9%;              /* Cor mutada/suave */
-  --muted-foreground: 240 3.8% 46.1%;   /* Texto mutado */
-  --accent: 240 4.8% 95.9%;             /* Cor de destaque */
-  --accent-foreground: 240 5.9% 10%;    /* Texto de destaque */
-  --destructive: 0 84.2% 60.2%;         /* ⭐ COR VERMELHA (era o problema!) */
-  --destructive-foreground: 0 0% 98%;   /* Texto branco no vermelho */
-  --border: 240 5.9% 90%;               /* Cor das bordas */
-  --input: 240 5.9% 90%;                /* Cor dos inputs */
-  --ring: 240 5.9% 10%;                 /* Cor do ring/focus */
+  --background: 45 15% 97%;             /* #faf9f6 - Fundo creme suave */
+  --foreground: 210 15% 25%;            /* #3a3f47 - Texto cinza azulado */
+  --card: 45 25% 95%;                   /* #f6f4f0 - Cards creme */
+  --card-foreground: 210 15% 25%;       /* Texto dos cards */
+  --popover: 45 20% 96%;                /* Popovers creme claro */
+  --popover-foreground: 210 15% 25%;    /* Texto dos popovers */
+  --primary: 210 15% 20%;               /* Primária escura legível */
+  --primary-foreground: 45 15% 95%;     /* Texto na primária */
+  --secondary: 45 20% 90%;              /* Secundária creme */
+  --secondary-foreground: 210 15% 30%;  /* Texto na secundária */
+  --muted: 45 20% 92%;                  /* Fundo suave */
+  --muted-foreground: 210 10% 45%;      /* #6b7280 - Texto secundário */
+  --accent: 45 20% 88%;                 /* Destaque suave */
+  --accent-foreground: 210 15% 25%;     /* Texto de destaque */
+  --destructive: 0 84.2% 60.2%;         /* Vermelho mantido */
+  --destructive-foreground: 45 15% 95%; /* Texto no vermelho */
+  --border: 45 15% 85%;                 /* Bordas suaves */
+  --input: 45 15% 88%;                  /* Inputs creme */
+  --ring: 142 76% 36%;                  /* Ring verde (marca) */
   --radius: 0.5rem;                     /* Raio das bordas */
+}
+
+/* 
+ * DARK MODE (Tema Escuro) - OTIMIZADO PARA LEITURA NOTURNA
+ * 🌙 Tons marrom escuro para reduzir strain ocular e melhorar sono
+ */
+.dark {
+  --background: 25 8% 12%;              /* #1f1e1b - Fundo marrom escuro */
+  --foreground: 45 15% 85%;             /* #d4d1c9 - Texto creme suave */
+  --card: 25 10% 15%;                   /* #26241f - Cards marrom */
+  --card-foreground: 45 15% 85%;        /* Texto dos cards */
+  --popover: 25 12% 14%;                /* Popovers marrom escuro */
+  --popover-foreground: 45 15% 85%;     /* Texto dos popovers */
+  --primary: 45 15% 80%;                /* Primária clara */
+  --primary-foreground: 25 10% 15%;     /* Texto na primária */
+  --secondary: 25 8% 20%;               /* Secundária marrom */
+  --secondary-foreground: 45 12% 75%;   /* Texto na secundária */
+  --muted: 25 8% 18%;                   /* Fundo suave escuro */
+  --muted-foreground: 45 8% 65%;        /* #a39d92 - Texto secundário */
+  --accent: 25 10% 22%;                 /* Destaque escuro */
+  --accent-foreground: 45 15% 85%;      /* Texto de destaque */
+  --destructive: 0 62.8% 30.6%;         /* Vermelho escuro mantido */
+  --destructive-foreground: 45 15% 90%; /* Texto no vermelho */
+  --border: 25 8% 25%;                  /* Bordas marrom */
+  --input: 25 8% 20%;                   /* Inputs marrom escuro */
+  --ring: 142 76% 36%;                  /* Ring verde (marca) */
 }
 
 /*
@@ -159,9 +189,9 @@
  * Aplica as cores do sistema ao elemento raiz
  */
 body {
-  font-family: system-ui, sans-serif;
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
+  /* font-family: system-ui, sans-serif;
+  background-color: hsl(var(--background)); */
+  /* color: hsl(var(--foreground)); */
 }
 
 /*

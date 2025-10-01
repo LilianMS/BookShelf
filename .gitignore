@@ -43,4 +43,5 @@ next-env.d.ts
 *.pdf
 MOBILE*
 PLANO*
+DARK*
 *.sqlite

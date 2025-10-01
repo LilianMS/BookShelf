@@ -46,20 +46,20 @@ export default function ListarLivro({ books }: ListarLivroProps) {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800">Meus Livros</h1>
+      <h1 className="text-3xl font-bold mb-8 text-foreground">Meus Livros</h1>
 
       {/* Área para Busca e Filtros */}
-      <div className="mb-8 p-4 bg-white rounded-lg shadow-md">
-        <h2 className="text-xl font-semibold mb-4">Buscar e Filtrar</h2>
+      <div className="mb-8 p-4 bg-card rounded-lg shadow-md border border-border">
+        <h2 className="text-xl font-semibold mb-4 text-card-foreground">Buscar e Filtrar</h2>
         <input
           type="text"
           placeholder="Buscar por título, autor ou gênero..."
-          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="w-full p-3 sm:p-2 border border-border rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-base sm:text-sm"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <select
-          className="w-full mt-2 p-2 border border-gray-300 rounded-md"
+          className="w-full mt-3 sm:mt-2 p-3 sm:p-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-base sm:text-sm"
           value={selectedGenre}
           onChange={(e) => setSelectedGenre(e.target.value)}
         >
