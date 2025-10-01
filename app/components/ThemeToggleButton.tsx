@@ -4,7 +4,11 @@ import { Moon, Sun, Monitor } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useTheme } from '@/hooks/useTheme'
 
-export function ThemeToggleButton() {
+interface ThemeToggleButtonProps {
+  variant?: 'default' | 'navbar'
+}
+
+export function ThemeToggleButton({ variant = 'default' }: ThemeToggleButtonProps) {
   const { theme, setTheme } = useTheme()
 
   const handleToggle = () => {
@@ -21,12 +25,19 @@ export function ThemeToggleButton() {
     }
   }
 
+  const getClassName = () => {
+    if (variant === 'navbar') {
+      return "rounded-full text-green-700 dark:text-green-300 hover:text-green-900 dark:hover:text-green-100 hover:bg-green-100 dark:hover:bg-green-900/30"
+    }
+    return "rounded-full" // Estilo padrão para footer
+  }
+
   return (
     <Button
       variant="ghost"
       size="icon"
       onClick={handleToggle}
-      className="rounded-full"
+      className={getClassName()}
     >
       {getIcon()}
     </Button>

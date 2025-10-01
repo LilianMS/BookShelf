@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export function FixedFooter() {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-2 md:hidden">
+    <footer className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-2 md:hidden text-foreground">
       <div className="flex justify-around items-center max-w-sm mx-auto">
         <Link href="/">
           <Button variant="ghost" size="icon" className="rounded-full">
