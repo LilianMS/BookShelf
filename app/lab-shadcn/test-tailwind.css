@@ -1,7 +1,7 @@
 /* Teste 4: Configuração manual das classes do shadcn/ui */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/preflight";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 /* Definindo as CSS Variables globalmente */
 :root {

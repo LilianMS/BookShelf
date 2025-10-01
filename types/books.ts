@@ -1,4 +1,5 @@
-export type bookStatus = 'QUERO-LER'| 'LENDO'| 'LIDO' | 'ABANDONADO' | 'PAUSADO';
+
+export type bookStatus = 'QUERO-LER' | 'LENDO' | 'LIDO' | 'ABANDONADO' | 'PAUSADO';
 
 export type bookGenre = 
   | 'Literatura Brasileira'
@@ -16,25 +17,29 @@ export type bookGenre =
   | 'Psicologia'
   | 'Filosofia'
   | 'Poesia'
-  | 'Infantil';
+  | 'Infantil'
+  | 'Outros';
 
 export interface Book {
-
-  id:string;
-  title:string;
-  author:string;
-  publisher:string;
-  genre:bookGenre;
-  year:number;
-  pages:number;
-  language:string;
-  rating:number;
-  synopsis:string;
-  cover:string;
-  status:bookStatus;
-
+  id: string;
+  title: string;
+  author: string;
+  publisher: string;
+  genre: bookGenre;
+  year: number;
+  pages: number;
+  language: string;
+  rating: number;
+  synopsis: string;
+  cover: string;
+  status: bookStatus;
+  pagesRead?: number; 
 }
 
+
+export type BookPayload = Omit<Book, 'id'>;
+
+export type BookEditPayload = Partial<BookPayload> & { id: string };
 export interface BookWithProgress extends Book {
   progress: number; // Progresso de leitura em porcentagem (0 a 100)
 }
