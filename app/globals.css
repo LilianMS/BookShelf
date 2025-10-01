@@ -36,6 +36,10 @@
  * Estas variáveis armazenam as cores em formato HSL sem hsl()
  * Exemplo: --destructive: 0 84.2% 60.2% (vermelho)
  */
+/* 
+ * LIGHT MODE (Tema Claro) - CONFIGURAÇÃO ORIGINAL MANTIDA
+ * ✅ Não mexemos no que já funciona!
+ */
 :root {
   --background: 0 0% 100%;              /* Fundo branco */
   --foreground: 240 10% 3.9%;           /* Texto escuro */
@@ -57,6 +61,32 @@
   --input: 240 5.9% 90%;                /* Cor dos inputs */
   --ring: 240 5.9% 10%;                 /* Cor do ring/focus */
   --radius: 0.5rem;                     /* Raio das bordas */
+}
+
+/* 
+ * DARK MODE (Tema Escuro) - NOVA ADIÇÃO
+ * 🌙 Cores invertidas para tema escuro, mas mantendo a mesma estrutura
+ */
+.dark {
+  --background: 240 10% 3.9%;           /* Fundo escuro */
+  --foreground: 0 0% 98%;               /* Texto claro */
+  --card: 240 10% 3.9%;                 /* Fundo dos cards escuro */
+  --card-foreground: 0 0% 98%;          /* Texto dos cards claro */
+  --popover: 240 10% 3.9%;              /* Fundo dos popovers escuro */
+  --popover-foreground: 0 0% 98%;       /* Texto dos popovers claro */
+  --primary: 0 0% 98%;                  /* Cor primária (claro) */
+  --primary-foreground: 240 5.9% 10%;   /* Texto na cor primária (escuro) */
+  --secondary: 240 3.7% 15.9%;          /* Cor secundária (cinza escuro) */
+  --secondary-foreground: 0 0% 98%;     /* Texto na cor secundária (claro) */
+  --muted: 240 3.7% 15.9%;              /* Cor mutada escura */
+  --muted-foreground: 240 5% 64.9%;     /* Texto mutado claro */
+  --accent: 240 3.7% 15.9%;             /* Cor de destaque escura */
+  --accent-foreground: 0 0% 98%;        /* Texto de destaque claro */
+  --destructive: 0 62.8% 30.6%;         /* ⭐ VERMELHO ESCURO */
+  --destructive-foreground: 0 0% 98%;   /* Texto branco no vermelho */
+  --border: 240 3.7% 15.9%;             /* Bordas escuras */
+  --input: 240 3.7% 15.9%;              /* Inputs escuros */
+  --ring: 240 4.9% 83.9%;               /* Ring claro */
 }
 
 /*

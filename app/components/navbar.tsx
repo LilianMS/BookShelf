@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button"
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { ThemeToggleButton } from "./ThemeToggleButton";
 
 
 const navLinks = [
@@ -46,6 +47,7 @@ export default function Navbar() {
                 </Button>
               </Link>
             ))}
+            <ThemeToggleButton />
             <Button className="bg-green-600 hover:bg-green-700 text-white transition-colors duration-300">
               Adicionar Livro
             </Button>
