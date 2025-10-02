@@ -22,11 +22,11 @@ export const viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${inter.className} bg-background`}>
+      <body className={`${inter.className} bg-background flex flex-col min-h-screen`}>
         <ThemeProvider>
           <ToastProvider>
             <Navbar />
-            <main>{children}</main>
+            <main className="flex-1">{children}</main>
             <FixedFooter />
             <ToastContainer />
             <footer className="w-full bg-green-50 dark:bg-green-950 text-center py-3 sm:py-4 text-green-700 dark:text-green-300 border-t border-green-200/50 dark:border-green-800/50">

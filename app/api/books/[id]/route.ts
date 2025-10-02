@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Book } from '@/types/books'
-import booksData from '@/data/books.json'
+import { BookStorage } from '@/lib/bookStorage'
 
 
 export async function GET(
@@ -8,8 +7,7 @@ export async function GET(
     { params }: { params: Promise<{ id: string }> }
 ) {
     const { id } = await params
-    const books: Book[] = booksData as Book[]
-    const book = books.find((b) => b.id === id)
+    const book = await BookStorage.getBookById(id)
 
     if (book) {
         return NextResponse.json(book, { status: 200 })
@@ -26,20 +24,14 @@ export async function PUT(
     try {
         const { id } = await params
         const body = await request.json()
-        const books: Book[] = booksData as Book[]
-        const bookIndex = books.findIndex(book => book.id === id)
+        
+        const updatedBook = await BookStorage.updateBook(id, body)
 
-        if (bookIndex === -1) {
+        if (!updatedBook) {
             return NextResponse.json(
                 { error: 'Livro não encontrado' },
                 { status: 404 }
             )
-        }
-
-        const updatedBook: Book = {
-            ...books[bookIndex],
-            ...body,
-            id
         }
 
         return NextResponse.json(updatedBook, { status: 200 })
@@ -59,18 +51,16 @@ export async function DELETE(
 ) {
     try {
         const { id } = await params
-        const books: Book[] = booksData as Book[]
-        const bookIndex = books.findIndex(book => book.id === id)
+        
+        const deletedBook = await BookStorage.deleteBook(id)
 
-        if (bookIndex === -1) {
+        if (!deletedBook) {
             return NextResponse.json(
                 { error: 'Livro não encontrado' },
                 { status: 404 }
             )
         }
 
-        const deletedBook = books[bookIndex]
-        // remover o livro ...
         return NextResponse.json(
             {
                 message: 'Livro excluído com sucesso',

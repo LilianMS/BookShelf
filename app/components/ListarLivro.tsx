@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { StarRatingDisplay } from "@/components/ui/StarRating";
+import ConfirmModal from "@/components/ui/ConfirmModal";
+import { useDeleteBook } from "@/components/ui/useDeleteBook";
 import { useState } from "react";
 
 interface ListarLivroProps {
@@ -21,7 +23,26 @@ interface ListarLivroProps {
 export default function ListarLivro({ books }: ListarLivroProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('');
+  const [bookToDelete, setBookToDelete] = useState<Book | null>(null);
   const availableGenres = [...new Set(books.map(book => book.genre))];
+
+  const { deleteBook, isDeleting } = useDeleteBook({
+    onSuccess: () => {
+      setBookToDelete(null);
+      // Aqui seria ideal recarregar a lista, mas como estamos usando dados estáticos,
+      // o usuário verá a atualização ao navegar ou recarregar
+    }
+  });
+
+  const handleDeleteClick = (book: Book) => {
+    setBookToDelete(book);
+  };
+
+  const handleConfirmDelete = () => {
+    if (bookToDelete) {
+      deleteBook(bookToDelete);
+    }
+  };
 
   const filterBooks = books.filter((book) => {
     const matchesSearch = book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -101,13 +122,33 @@ export default function ListarLivro({ books }: ListarLivroProps) {
                       Editar
                     </Button>
                   </Link>
-                  <Button variant="destructive" cursor="pointer" size="sm" className="px-3" iconVariant="delete" />
+                  <Button 
+                    variant="destructive" 
+                    size="sm" 
+                    iconVariant="delete"
+                    className="px-3" 
+                    onClick={() => handleDeleteClick(book)}
+                    aria-label={`Deletar ${book.title}`}
+                  />
                 </div>
               </div>
             </CardFooter>
           </Card>
         ))}
       </div>
+
+      {/* Modal de confirmação de delete */}
+      <ConfirmModal
+        isOpen={!!bookToDelete}
+        onClose={() => setBookToDelete(null)}
+        onConfirm={handleConfirmDelete}
+        title="Deletar livro"
+        description={bookToDelete ? `Tem certeza que deseja deletar "${bookToDelete.title}"? Esta ação não pode ser desfeita.` : ''}
+        confirmText="Deletar"
+        cancelText="Cancelar"
+        isLoading={isDeleting}
+        variant="danger"
+      />
     </div>
   );
 }

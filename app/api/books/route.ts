@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Book } from '@/types/books'
-import booksData from '@/data/books.json'
+import { BookStorage } from '@/lib/bookStorage'
 
 
 export async function GET() {
     try {
-        const books: Book[] = booksData as Book[]
+        const books = await BookStorage.readBooks()
         return NextResponse.json(books, { status: 200 })
     } catch (error) {
         console.error('Erro ao buscar livros:', error)
@@ -25,8 +24,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: 'Título e autor são obrigatórios' }, { status: 400 })
         }
 
-        const newBook: Book = {
-            id: Date.now().toString(),
+        const newBookData = {
             title: body.title,
             author: body.author,
             publisher: body.publisher || '',
@@ -39,6 +37,8 @@ export async function POST(request: NextRequest) {
             cover: body.cover || '',
             status: body.status || 'QUERO-LER'
         }
+
+        const newBook = await BookStorage.addBook(newBookData)
         return NextResponse.json(newBook, { status: 201 })
     } catch (error) {
         console.error('Erro ao criar livro:', error)

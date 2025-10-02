@@ -36,6 +36,7 @@ export default function AddBookPage() {
 
       // Redirecionar para a lista de livros após sucesso
       router.push('/livros')
+      router.refresh() // Forçar atualização dos dados
     } catch (error) {
       console.error('Erro ao adicionar livro:', error)
       

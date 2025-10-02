@@ -1,8 +1,14 @@
+'use client'
+
 import Image from "next/image";
 import { Book } from "@/types/books";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import ConfirmModal from "@/components/ui/ConfirmModal";
+import { useDeleteBook } from "@/components/ui/useDeleteBook";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 
 const StarRating = ({ rating }: { rating: number }) => {
@@ -19,6 +25,25 @@ interface PreviewLivroProps {
 }
 
 export function PreviewLivro({ book }: PreviewLivroProps) {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const router = useRouter();
+
+  const { deleteBook, isDeleting } = useDeleteBook({
+    onSuccess: () => {
+      setShowDeleteModal(false);
+      // Redirecionar para biblioteca após deletar
+      router.push('/livros');
+    }
+  });
+
+  const handleDeleteClick = () => {
+    setShowDeleteModal(true);
+  };
+
+  const handleConfirmDelete = () => {
+    deleteBook(book);
+  };
+
   return (
     <div className="container mx-auto max-w-4xl p-4 sm:p-6 lg:p-8">
       <Link
@@ -88,11 +113,33 @@ export function PreviewLivro({ book }: PreviewLivroProps) {
                   Editar Livro
                 </Button>
               </Link>
-              <Button variant="destructive" cursor="pointer" size="sm" className="w-full sm:w-auto" iconVariant="delete" />
+              <Button 
+                variant="destructive" 
+                size="sm" 
+                iconVariant="delete"
+                className="w-full sm:w-auto" 
+                onClick={handleDeleteClick}
+                aria-label={`Deletar ${book.title}`}
+              >
+                Deletar Livro
+              </Button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Modal de confirmação de delete */}
+      <ConfirmModal
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={handleConfirmDelete}
+        title="Deletar livro"
+        description={`Tem certeza que deseja deletar "${book.title}"? Esta ação não pode ser desfeita e o livro será removido permanentemente da sua biblioteca.`}
+        confirmText="Deletar"
+        cancelText="Cancelar"
+        isLoading={isDeleting}
+        variant="danger"
+      />
     </div>
   );
 }
