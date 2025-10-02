@@ -45,6 +45,7 @@ export async function PUT(
         return NextResponse.json(updatedBook, { status: 200 })
 
     } catch (error) {
+        console.error('Erro ao atualizar livro:', error)
         return NextResponse.json(
             { error: 'Erro ao atualizar livro' },
             { status: 500 }
@@ -79,6 +80,7 @@ export async function DELETE(
         )
 
     } catch (error) {
+        console.error('Erro ao excluir livro:', error)
         return NextResponse.json(
             { error: 'Erro ao excluir livro' },
             { status: 500 }

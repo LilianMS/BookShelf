@@ -8,6 +8,7 @@ export async function GET() {
         const books: Book[] = booksData as Book[]
         return NextResponse.json(books, { status: 200 })
     } catch (error) {
+        console.error('Erro ao buscar livros:', error)
         return NextResponse.json(
             { error: 'Erro ao buscar livros' },
             { status: 500 }
@@ -40,6 +41,7 @@ export async function POST(request: NextRequest) {
         }
         return NextResponse.json(newBook, { status: 201 })
     } catch (error) {
+        console.error('Erro ao criar livro:', error)
         return NextResponse.json(
             { error: 'Erro ao criar livro' },
             { status: 500 }

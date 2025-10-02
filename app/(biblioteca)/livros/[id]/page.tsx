@@ -1,7 +1,6 @@
 // esta pagina mostra o preview do livro selecionado
 
 import { PreviewLivro } from "@/app/components/PreviewLivro";
-import booksData from "@/data/books.json";
 import { Book } from "@/types/books";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -13,7 +12,16 @@ interface PageProps {
 }
 
 async function getBookById(id: string): Promise<Book | null> {
-  const response = await fetch(`http://localhost:3000/api/books/${id}`)
+  // Durante build (local ou Vercel), usa import direto
+  if (typeof window === 'undefined') {
+    const { default: booksData } = await import('@/data/books.json')
+    const books = booksData as Book[]
+    const book = books.find((b) => b.id === id)
+    return book || null
+  }
+  
+  // No cliente, usa API
+  const response = await fetch(`/api/books/${id}`)
   if (!response.ok) {
     return null  // Livro não encontrado
   }
