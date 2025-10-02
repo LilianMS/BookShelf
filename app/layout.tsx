@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google';
 import Navbar from './components/navbar';
 import { FixedFooter } from './components/FixedFooter';
 import { ThemeProvider } from '@/hooks/useTheme';
+import { ToastProvider } from '@/components/ui/toast-context';
+import ToastContainer from '@/components/ui/toast';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,14 +22,17 @@ export const viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${inter.className} bg-background`}>
+      <body className={`${inter.className} bg-background flex flex-col min-h-screen`}>
         <ThemeProvider>
-          <Navbar />
-          <main>{children}</main>
-          <FixedFooter />
-          <footer className="w-full bg-green-50 dark:bg-green-950 text-center py-3 sm:py-4 text-green-700 dark:text-green-300 border-t border-green-200/50 dark:border-green-800/50">
-            <p className="text-xs sm:text-sm">&copy; 2025 Leafly. Todos os direitos reservados.</p>
-          </footer>
+          <ToastProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <FixedFooter />
+            <ToastContainer />
+            <footer className="w-full bg-green-50 dark:bg-green-950 text-center py-3 sm:py-4 text-green-700 dark:text-green-300 border-t border-green-200/50 dark:border-green-800/50">
+              <p className="text-xs sm:text-sm">&copy; 2025 Leafly. Todos os direitos reservados.</p>
+            </footer>
+          </ToastProvider>
         </ThemeProvider>
       </body>
     </html>
