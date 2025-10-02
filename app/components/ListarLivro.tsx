@@ -11,26 +11,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { StarRatingDisplay } from "@/components/ui/StarRating";
 import { useState } from "react";
 
 interface ListarLivroProps {
   books: Book[];
 }
-
-const StarRating = ({ rating }: { rating: number }) => {
-  const stars = [];
-  for (let i = 1; i <= 5; i++) {
-    stars.push(
-      <span
-        key={i}
-        className={i <= rating ? "text-yellow-400" : "text-gray-400"}
-      >
-        ★
-      </span>
-    );
-  }
-  return <div className="flex">{stars}</div>;
-};
 
 export default function ListarLivro({ books }: ListarLivroProps) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -97,7 +83,7 @@ export default function ListarLivro({ books }: ListarLivroProps) {
               <p className="text-base sm:text-lg font-bold text-card-foreground">por {book.author}</p>
               <p className="text-xs text-muted-foreground mt-2">Ano: {book.year}</p>
               <div className="mt-2">
-                <StarRating rating={book.rating} />
+                <StarRatingDisplay rating={book.rating} />
               </div>
             </CardContent>
             <CardFooter className="p-3 sm:p-4 bg-muted/30 border-t border-border">
