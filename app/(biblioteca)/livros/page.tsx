@@ -1,10 +1,13 @@
 
 import ListarLivro from '@/app/components/ListarLivro'; 
-import booksData from '@/data/books.json';
 import { Book } from '@/types/books';
 
-export default function HomePage() {
-  const books: Book[] = booksData as Book[];
+async function getBooksFromAPI() {
+  const response = await fetch('http://localhost:3000/api/books')
+  return response.json()
+} 
 
+export default async function HomePage() {
+  const books: Book[] = await getBooksFromAPI()
   return <ListarLivro books={books} />;
 }
