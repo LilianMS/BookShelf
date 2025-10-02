@@ -4,10 +4,12 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Book } from '@/types/books'
 import BookForm from '@/components/ui/BookForm'
+import { useToast } from '@/components/ui/toast-context'
 
 export default function AddBookPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
+  const { addToast } = useToast()
 
   const handleAddBook = async (bookData: Omit<Book, 'id'>) => {
     setIsLoading(true)
@@ -25,11 +27,24 @@ export default function AddBookPage() {
         throw new Error('Erro ao adicionar livro')
       }
 
+      // Toast de sucesso
+      addToast({
+        title: 'Livro adicionado!',
+        description: `"${bookData.title}" foi adicionado à sua biblioteca.`,
+        variant: 'success'
+      })
+
       // Redirecionar para a lista de livros após sucesso
       router.push('/livros')
     } catch (error) {
       console.error('Erro ao adicionar livro:', error)
-      alert('Erro ao adicionar livro. Tente novamente.')
+      
+      // Toast de erro
+      addToast({
+        title: 'Erro ao adicionar livro',
+        description: 'Verifique os dados e tente novamente.',
+        variant: 'error'
+      })
     } finally {
       setIsLoading(false)
     }
