@@ -22,9 +22,11 @@ export function FixedFooter() {
         
         <ThemeToggleButton />
         
-        <Button variant="ghost" size="icon" className="rounded-full">
-          <Search className="h-4 w-4" />
-        </Button>
+        <Link href="/livros#search">
+          <Button variant="ghost" size="icon" className="rounded-full">
+            <Search className="h-4 w-4" />
+          </Button>
+        </Link>
         
         <Link href="/livros/add">
           <Button variant="ghost" size="icon" className="rounded-full">

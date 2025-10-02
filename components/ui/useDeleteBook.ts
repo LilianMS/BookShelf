@@ -7,9 +7,10 @@ import { useRouter } from 'next/navigation';
 
 interface UseDeleteBookOptions {
   onSuccess?: () => void;
+  redirectTo?: string; // Nova opção para redirecionamento automático
 }
 
-export function useDeleteBook({ onSuccess }: UseDeleteBookOptions = {}) {
+export function useDeleteBook({ onSuccess, redirectTo }: UseDeleteBookOptions = {}) {
   const [isDeleting, setIsDeleting] = useState(false);
   const { addToast } = useToast();
   const router = useRouter();
@@ -18,8 +19,10 @@ export function useDeleteBook({ onSuccess }: UseDeleteBookOptions = {}) {
     setIsDeleting(true);
     
     try {
-      const response = await fetch(`/api/books/${book.id}`, {
+      // Usar API fetch com cache busting
+      const response = await fetch(`/api/books/${book.id}?_t=` + Date.now(), {
         method: 'DELETE',
+        cache: 'no-store'
       });
 
       if (!response.ok) {
@@ -32,8 +35,29 @@ export function useDeleteBook({ onSuccess }: UseDeleteBookOptions = {}) {
         duration: 4000
       });
 
-      // Revalidar a página atual para atualizar a lista
+      // Estratégia de revalidação robusta
       router.refresh();
+      
+      // Redirecionamento automático se especificado
+      if (redirectTo) {
+        // Adicionar toast de redirecionamento
+        setTimeout(() => {
+          addToast({
+            title: 'Redirecionando...',
+            variant: 'info',
+            duration: 2000
+          });
+        }, 500);
+        
+        setTimeout(() => {
+          router.push(redirectTo);
+        }, 800);
+      } else {
+        // Forçar reload de dados após pequeno delay
+        setTimeout(() => {
+          router.refresh();
+        }, 200);
+      }
       
       onSuccess?.();
       

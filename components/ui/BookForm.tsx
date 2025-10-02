@@ -14,7 +14,13 @@ import {
 
 interface BookFormProps {
   initialData?: Partial<Book>
-  onSubmit: (bookData: Omit<Book, 'id'>) => Promise<void>
+  
+  // Para Server Actions (novo - recomendado)
+  action?: (formData: FormData) => Promise<void>
+  
+  // Para fetch tradicional (mantido para compatibilidade)
+  onSubmit?: (bookData: Omit<Book, 'id'>) => Promise<void>
+  
   submitText?: string
   isLoading?: boolean
 }
@@ -48,6 +54,7 @@ const STATUS_OPTIONS: bookStatus[] = [
 
 export default function BookForm({
   initialData,
+  action,
   onSubmit,
   submitText = "Salvar",
   isLoading = false
@@ -64,8 +71,12 @@ export default function BookForm({
   const [cover, setCover] = useState(initialData?.cover || '');
   const [status, setStatus] = useState<bookStatus>(initialData?.status || 'QUERO-LER');
 
+  // Função para lidar com onSubmit tradicional (fetch)
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    // Se tem Server Action, não usa handleSubmit
+    if (action) return;
 
     const bookData: Omit<Book, 'id'> = {
       title,
@@ -81,7 +92,9 @@ export default function BookForm({
       status
     };
 
-    await onSubmit(bookData);
+    if (onSubmit) {
+      await onSubmit(bookData);
+    }
   };
 
   return (
@@ -94,7 +107,10 @@ export default function BookForm({
           </CardDescription>
         </CardHeader>
         
-        <form onSubmit={handleSubmit}>
+        <form 
+          onSubmit={action ? undefined : handleSubmit}
+          action={action}
+        >
           <CardContent className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Título */}
@@ -105,10 +121,15 @@ export default function BookForm({
               <input
                 type="text"
                 id="title"
+                name="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="w-full p-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent text-card-foreground placeholder:text-muted-foreground"
+                className="w-full p-3 bg-input border border-border rounded-lg 
+                focus:outline-none
+                focus:ring-2 focus:ring-green-500 focus:border-transparent 
+                transition-all
+                text-base placeholder:text-muted-foreground"
                 placeholder="Digite o título do livro"
               />
             </div>
@@ -121,10 +142,12 @@ export default function BookForm({
               <input
                 type="text"
                 id="author"
+                name="author"
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
                 required
-                className="w-full p-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent text-card-foreground placeholder:text-muted-foreground"
+                className="w-full p-3 bg-input border border-border rounded-lg 
+                focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-card-foreground placeholder:text-muted-foreground"
                 placeholder="Nome do autor"
               />
             </div>
@@ -137,10 +160,11 @@ export default function BookForm({
               <input
                 type="text"
                 id="publisher"
+                name="publisher"
                 value={publisher}
                 onChange={(e) => setPublisher(e.target.value)}
                 required
-                className="w-full p-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent text-card-foreground placeholder:text-muted-foreground"
+                className="w-full p-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-card-foreground placeholder:text-muted-foreground"
                 placeholder="Nome da editora"
               />
             </div>
@@ -152,10 +176,11 @@ export default function BookForm({
               </label>
               <select
                 id="genre"
+                name="genre"
                 value={genre}
                 onChange={(e) => setGenre(e.target.value as bookGenre)}
                 required
-                className="w-full p-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent text-card-foreground"
+                className="w-full p-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-card-foreground"
               >
                 {GENRE_OPTIONS.map((genreOption) => (
                   <option key={genreOption} value={genreOption}>
@@ -173,12 +198,13 @@ export default function BookForm({
               <input
                 type="number"
                 id="year"
+                name="year"
                 value={year}
                 onChange={(e) => setYear(Number(e.target.value))}
                 required
                 min="1000"
                 max={new Date().getFullYear() + 1}
-                className="w-full p-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent text-card-foreground"
+                className="w-full p-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-card-foreground"
               />
             </div>
 
@@ -190,11 +216,12 @@ export default function BookForm({
               <input
                 type="number"
                 id="pages"
+                name="pages"
                 value={pages}
                 onChange={(e) => setPages(Number(e.target.value))}
                 required
                 min="1"
-                className="w-full p-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent text-card-foreground"
+                className="w-full p-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-card-foreground"
               />
             </div>
 
@@ -206,10 +233,11 @@ export default function BookForm({
               <input
                 type="text"
                 id="language"
+                name="language"
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
                 required
-                className="w-full p-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent text-card-foreground placeholder:text-muted-foreground"
+                className="w-full p-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-card-foreground placeholder:text-muted-foreground"
                 placeholder="Ex: Português, Inglês, Espanhol"
               />
             </div>
@@ -228,6 +256,8 @@ export default function BookForm({
                   className="justify-center"
                 />
               </div>
+              {/* Campo hidden para Server Actions */}
+              <input type="hidden" name="rating" value={rating} />
             </div>
 
             {/* Status */}
@@ -237,10 +267,11 @@ export default function BookForm({
               </label>
               <select
                 id="status"
+                name="status"
                 value={status}
                 onChange={(e) => setStatus(e.target.value as bookStatus)}
                 required
-                className="w-full p-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent text-card-foreground"
+                className="w-full p-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-card-foreground"
               >
                 {STATUS_OPTIONS.map((statusOption) => (
                   <option key={statusOption} value={statusOption}>
@@ -258,9 +289,10 @@ export default function BookForm({
               <input
                 type="url"
                 id="cover"
+                name="cover"
                 value={cover}
                 onChange={(e) => setCover(e.target.value)}
-                className="w-full p-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent text-card-foreground placeholder:text-muted-foreground"
+                className="w-full p-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-card-foreground placeholder:text-muted-foreground"
                 placeholder="https://exemplo.com/capa.jpg"
               />
             </div>
@@ -272,11 +304,12 @@ export default function BookForm({
               </label>
               <textarea
                 id="synopsis"
+                name="synopsis"
                 value={synopsis}
                 onChange={(e) => setSynopsis(e.target.value)}
                 required
                 rows={4}
-                className="w-full p-3 bg-input border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent text-card-foreground placeholder:text-muted-foreground resize-vertical"
+                className="w-full p-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-card-foreground placeholder:text-muted-foreground resize-vertical"
                 placeholder="Descreva a sinopse do livro..."
               />
             </div>

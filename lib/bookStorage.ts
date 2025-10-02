@@ -5,6 +5,17 @@ import { Book } from '@/types/books'
 const booksFilePath = join(process.cwd(), 'data', 'books.json')
 
 export class BookStorage {
+  // Helper para limpar strings vazias
+  private static cleanEmptyStrings(obj: Record<string, unknown>): Record<string, unknown> {
+    const cleaned = { ...obj };
+    Object.keys(cleaned).forEach(key => {
+      if (cleaned[key] === '') {
+        cleaned[key] = undefined;
+      }
+    });
+    return cleaned;
+  }
+
   static async readBooks(): Promise<Book[]> {
     try {
       const fileContents = await fs.readFile(booksFilePath, 'utf8')
@@ -26,10 +37,11 @@ export class BookStorage {
 
   static async addBook(newBook: Omit<Book, 'id'>): Promise<Book> {
     const books = await this.readBooks()
-    const book: Book = {
-      ...newBook,
+    const cleanedData = this.cleanEmptyStrings(newBook)
+    const book = {
+      ...cleanedData,
       id: Date.now().toString()
-    }
+    } as Book
     books.push(book)
     await this.writeBooks(books)
     return book
@@ -43,7 +55,7 @@ export class BookStorage {
       return null
     }
 
-    books[index] = { ...books[index], ...updates, id }
+    books[index] = { ...books[index], ...this.cleanEmptyStrings(updates), id }
     await this.writeBooks(books)
     return books[index]
   }

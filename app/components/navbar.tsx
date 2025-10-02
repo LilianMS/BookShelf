@@ -11,6 +11,7 @@ import { ThemeToggleButton } from "./ThemeToggleButton";
 const navLinks = [
   { href: "/", label: "Dashboard" },
   { href: "/livros", label: "Biblioteca" },
+  { href: "/livros#search", label: "Buscar" },
 ];
 
 export default function Navbar() {

@@ -37,7 +37,6 @@ export default function Home() {
               value={stats.totalBooks}
               description="+10% em relação ao mês anterior"
               valueColor="text-blue-600 dark:text-blue-400"
-              descriptionColor="text-green-600 dark:text-green-400"
               icon={<BookOpen className="h-6 w-6 sm:h-7 sm:w-7" />}
             />
 

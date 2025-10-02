@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { StarRatingDisplay } from "@/components/ui/StarRating";
 import ConfirmModal from "@/components/ui/ConfirmModal";
 import { useDeleteBook } from "@/components/ui/useDeleteBook";
+import { getBookCover } from "@/lib/constants";
 import { useState } from "react";
 
 interface ListarLivroProps {
@@ -87,7 +88,7 @@ export default function ListarLivro({ books }: ListarLivroProps) {
           >
             <CardHeader className="p-0">
               <Image
-                src={book.cover ?? "/default-cover.jpg"}
+                src={getBookCover(book.cover)}
                 alt={`Capa do livro ${book.title}`}
                 width={300}
                 height={400}

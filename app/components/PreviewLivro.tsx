@@ -8,7 +8,7 @@ import { ArrowLeft } from "lucide-react";
 import ConfirmModal from "@/components/ui/ConfirmModal";
 import { useDeleteBook } from "@/components/ui/useDeleteBook";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { getBookCover } from "@/lib/constants";
 
 
 const StarRating = ({ rating }: { rating: number }) => {
@@ -26,13 +26,11 @@ interface PreviewLivroProps {
 
 export function PreviewLivro({ book }: PreviewLivroProps) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const router = useRouter();
 
   const { deleteBook, isDeleting } = useDeleteBook({
+    redirectTo: '/livros', // Redirecionamento automático para biblioteca
     onSuccess: () => {
       setShowDeleteModal(false);
-      // Redirecionar para biblioteca após deletar
-      router.push('/livros');
     }
   });
 
@@ -59,7 +57,7 @@ export function PreviewLivro({ book }: PreviewLivroProps) {
           {/* Coluna da Capa */}
           <div className="md:col-span-1 bg-muted/30 flex items-center justify-center p-4 sm:p-6 md:p-8 md:pt-14">
             <Image
-              src={book.cover ?? "/default-cover.jpg"}
+              src={getBookCover(book.cover, true)}
               alt={`Capa do livro ${book.title}`}
               width={300}
               height={450}
