@@ -83,9 +83,11 @@ export function PreviewLivro({ book }: PreviewLivroProps) {
             </div>
 
             <div className="mt-6 pt-4 border-t border-border flex flex-col sm:flex-row gap-3 sm:gap-4 sm:justify-end">
-              <Button variant="secondary" className="w-full sm:w-auto" size="sm">
-                Editar Livro
-              </Button>
+              <Link href={`/livros/${book.id}/edit`}>
+                <Button variant="secondary" className="w-full sm:w-auto" size="sm">
+                  Editar Livro
+                </Button>
+              </Link>
               <Button variant="destructive" cursor="pointer" size="sm" className="w-full sm:w-auto" iconVariant="delete" />
             </div>
           </div>

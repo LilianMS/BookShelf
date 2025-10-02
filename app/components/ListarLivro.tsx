@@ -96,9 +96,11 @@ export default function ListarLivro({ books }: ListarLivroProps) {
 
                 {/* Agrupamento dos botões secundários */}
                 <div className="flex gap-2">
-                  <Button variant="secondary" className="flex-1 sm:flex-none" size="sm">
-                    Editar
-                  </Button>
+                  <Link href={`/livros/${book.id}/edit`} className="flex-1 sm:flex-none">
+                    <Button variant="secondary" className="w-full" size="sm">
+                      Editar
+                    </Button>
+                  </Link>
                   <Button variant="destructive" cursor="pointer" size="sm" className="px-3" iconVariant="delete" />
                 </div>
               </div>

@@ -26,7 +26,7 @@ export function FixedFooter() {
           <Search className="h-4 w-4" />
         </Button>
         
-        <Link href="/livros/adicionar">
+        <Link href="/livros/add">
           <Button variant="ghost" size="icon" className="rounded-full">
             <Plus className="h-4 w-4" />
           </Button>

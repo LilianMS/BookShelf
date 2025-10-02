@@ -48,9 +48,11 @@ export default function Navbar() {
               </Link>
             ))}
             <ThemeToggleButton variant="navbar" />
-            <Button className="bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-600 text-white transition-colors duration-300">
-              Adicionar Livro
-            </Button>
+            <Link href="/livros/add">
+              <Button className="bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-600 text-white transition-colors duration-300">
+                Adicionar Livro
+              </Button>
+            </Link>
           </nav>
         </div>
       </header>
@@ -85,15 +87,17 @@ function MobileMenu({ pathname, setIsMobileMenuOpen }: { pathname: string; setIs
               {link.label}
             </Link>
           ))}
-          <Button
-            className="w-full mt-3 py-3 bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-600 text-white text-base font-medium"
-            onClick={() => {
-              setIsLocalMobileMenuOpen(false);
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            Adicionar Livro
-          </Button>
+          <Link href="/livros/add">
+            <Button
+              className="w-full mt-3 py-3 bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-600 text-white text-base font-medium"
+              onClick={() => {
+                setIsLocalMobileMenuOpen(false);
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              Adicionar Livro
+            </Button>
+          </Link>
         </div>)}
     </>
   );
