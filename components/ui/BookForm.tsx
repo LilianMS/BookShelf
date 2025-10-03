@@ -321,6 +321,8 @@ export default function BookForm({
               <button
                 type="submit"
                 disabled={isLoading}
+                aria-live="polite"
+                aria-busy={isLoading}
                 className="px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-card disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
               >
                 {isLoading ? 'Salvando...' : submitText}
