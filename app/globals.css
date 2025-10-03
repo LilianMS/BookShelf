@@ -2,44 +2,21 @@
 @import "tw-animate-css";
 
 /*
- * ====================================================================
- * CONFIGURAÇÃO DO SISTEMA SHADCN/UI
- * ====================================================================
+ * SOLUÇÃO SHADCN/UI:
  * 
- * PROBLEMA ORIGINAL:
- * O componente Button do shadcn/ui não funcionava corretamente.
- * Especificamente, variant="destructive" não ficava vermelho.
+ * Problema: Componentes shadcn/ui não funcionavam (ex: Button variant="destructive" sem cor)
+ * Causa: shadcn/ui gera classes como "bg-destructive" que não existiam no CSS
  * 
- * CAUSA RAIZ:
- * shadcn/ui usa um sistema de CSS Variables + classes personalizadas.
- * O componente gera classe "bg-destructive", mas essa classe não existia.
+ * Solução implementada:
+ * 1. CSS Variables (--destructive, --primary, etc.) para armazenar cores
+ * 2. Classes CSS (.bg-destructive, .bg-primary, etc.) que conectam as variáveis ao Tailwind
+ * 3. Suporte completo a tema claro/escuro
  * 
- * FLUXO DO PROBLEMA:
- * 1. <Button variant="destructive"> 
- * 2. → Gera classe "bg-destructive"
- * 3. → Tailwind procura .bg-destructive
- * 4. → ❌ NÃO ENCONTRA → Sem cor aplicada
- * 
- * SOLUÇÃO IMPLEMENTADA:
- * 1. Definir CSS Variables (dados das cores)
- * 2. Criar classes CSS que mapeiam essas variáveis
- * 3. Permitir que shadcn/ui funcione corretamente
- * 
- * RESULTADO:
- * ✅ variant="destructive" → bg-destructive → hsl(0 84.2% 60.2%) → VERMELHO
- * ✅ Todos os outros variants também funcionam
- * ✅ Sistema preparado para tema claro/escuro
+ * Resultado: Todos os componentes shadcn/ui funcionam corretamente
  */
 
-/* 
- * STEP 1: CSS Variables (Design Tokens)
- * Estas variáveis armazenam as cores em formato HSL sem hsl()
- * Exemplo: --destructive: 0 84.2% 60.2% (vermelho)
- */
-/* 
- * LIGHT MODE (Tema Claro) - OTIMIZADO PARA LEITURA
- * 🌅 Cores creme/sépia para reduzir fadiga ocular em telas pequenas
- */
+/* CSS Variables - Tema claro */
+
 :root {
   --background: 45 15% 97%;             /* #faf9f6 - Fundo creme suave */
   --foreground: 210 15% 25%;            /* #3a3f47 - Texto cinza azulado */
@@ -63,10 +40,7 @@
   --radius: 0.5rem;                     /* Raio das bordas */
 }
 
-/* 
- * DARK MODE (Tema Escuro) - OTIMIZADO PARA LEITURA NOTURNA
- * 🌙 Tons marrom escuro para reduzir strain ocular e melhorar sono
- */
+/* Tema escuro */
 .dark {
   --background: 25 8% 12%;              /* #1f1e1b - Fundo marrom escuro */
   --foreground: 45 15% 85%;             /* #d4d1c9 - Texto creme suave */
@@ -89,17 +63,9 @@
   --ring: 142 76% 36%;                  /* Ring verde (marca) */
 }
 
-/*
- * STEP 2: Classes CSS que conectam as variáveis ao Tailwind
- * Estas classes fazem a "ponte" entre shadcn/ui e as CSS Variables
- * 
- * COMO FUNCIONA:
- * - shadcn/ui gera: className="bg-destructive"
- * - CSS aplica: background-color: hsl(var(--destructive))
- * - Resultado: hsl(0 84.2% 60.2%) = vermelho
- */
+/* Classes que conectam CSS Variables ao Tailwind */
 
-/* ⭐ CLASSE PRINCIPAL que resolve o problema do botão vermelho */
+/* Classe principal para botões destructive */
 .bg-destructive {
   background-color: hsl(var(--destructive));
 }
@@ -172,10 +138,7 @@
   border-color: hsl(var(--border));
 }
 
-/*
- * STEP 3: Classes utilitárias extras
- * Outras classes que complementam o sistema
- */
+/* Classes utilitárias extras */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -184,33 +147,7 @@
   overflow: hidden;
 }
 
-/*
- * STEP 4: Estilo base do body
- * Aplica as cores do sistema ao elemento raiz
- */
-body {
-  /* font-family: system-ui, sans-serif;
-  background-color: hsl(var(--background)); */
-  /* color: hsl(var(--foreground)); */
-}
 
-/*
- * ====================================================================
- * RESUMO DA SOLUÇÃO:
- * ====================================================================
- * 
- * ✅ ANTES: <Button variant="destructive"> → sem cor
- * ✅ DEPOIS: <Button variant="destructive"> → vermelho
- * 
- * BENEFÍCIOS ADICIONAIS:
- * - Sistema de cores unificado
- * - Preparado para tema escuro
- * - Consistência visual
- * - Todos os componentes shadcn/ui funcionam
- * 
- * ARQUIVOS AFETADOS:
- * - ✅ globals.css (este arquivo)
- * - ✅ ListarLivro.tsx (botão Excluir funciona)
- * - ✅ Qualquer componente shadcn/ui futuro
- */
+
+/* Sistema de cores unificado para shadcn/ui com suporte a tema claro/escuro */
 

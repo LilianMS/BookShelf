@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
             language: body.language || 'Português',
             rating: body.rating || 5,
             synopsis: body.synopsis || '',
-            cover: body.cover || '',
+            cover: body.cover || undefined, // undefined em vez de string vazia
             status: body.status || 'QUERO-LER'
         }
 

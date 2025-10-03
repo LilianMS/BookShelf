@@ -32,12 +32,22 @@ export function ThemeToggleButton({ variant = 'default' }: ThemeToggleButtonProp
     return "rounded-full" // Estilo padrão para footer
   }
 
+  const getAriaLabel = () => {
+    switch (theme) {
+      case 'light': return 'Mudar para tema escuro'
+      case 'dark': return 'Mudar para tema do sistema'
+      case 'system': return 'Mudar para tema claro'
+      default: return 'Alternar tema'
+    }
+  }
+
   return (
     <Button
       variant="ghost"
       size="icon"
       onClick={handleToggle}
       className={getClassName()}
+      aria-label={getAriaLabel()}
     >
       {getIcon()}
     </Button>

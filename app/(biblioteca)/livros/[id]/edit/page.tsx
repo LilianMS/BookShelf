@@ -15,20 +15,19 @@ interface PageProps {
 }
 
 async function getBookById(id: string): Promise<Book | null> {
-    // Durante build (local ou Vercel), usa import direto
-    if (typeof window === 'undefined') {
-        const { default: booksData } = await import('@/data/books.json')
-        const books = booksData as Book[]
-        const book = books.find((b) => b.id === id)
-        return book || null
-    }
-
-    // No cliente, usa API
-    const response = await fetch(`/api/books/${id}`)
-    if (!response.ok) {
+    try {
+        // No cliente, sempre usar API com cache busting
+        const response = await fetch(`/api/books/${id}?_t=` + Date.now(), {
+            cache: 'no-store'
+        })
+        if (!response.ok) {
+            return null
+        }
+        return response.json()
+    } catch (error) {
+        console.error('Erro ao buscar livro:', error)
         return null
     }
-    return response.json()
 }
 
 export default function EditBookPage({ params }: PageProps) {

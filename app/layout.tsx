@@ -12,6 +12,15 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: "Leafly",
   description: "Gerencie sua biblioteca pessoal com Leafly 🌿",
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-ico.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 };
 
 export const viewport = {
