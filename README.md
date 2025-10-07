@@ -1,3 +1,20 @@
+<p align="center">
+   <img src="./public/apple-touch-ico.png" alt="Leafly Logo" width="120" />
+</p>
+
+<h1 align="center">Leafly 🌿</h1>
+<p align="center"><b>Sua Biblioteca Digital Completa</b></p>
+
+<p align="center">
+   <img alt="Next.js" src="https://img.shields.io/badge/Next.js-15-000?logo=nextdotjs&logoColor=white&style=flat-square" />
+   <img alt="React" src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white&style=flat-square" />
+   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white&style=flat-square" />
+   <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?logo=tailwindcss&logoColor=white&style=flat-square" />
+   <img alt="Lucide" src="https://img.shields.io/badge/Lucide-React-000?logo=lucide&logoColor=white&style=flat-square" />
+</p>
+
+---
+
 # Leafly 🌿 – Sua Biblioteca Digital Completa
 
 O **Leafly** é uma aplicação web moderna e completa para **organizar, catalogar e gerenciar sua biblioteca pessoal**. Com funcionalidades CRUD completas, sistema de filtros avançados, Server Actions do Next.js 15 e uma interface responsiva, é a solução ideal para leitores que querem uma experiência digital profissional.
@@ -10,7 +27,7 @@ O **Leafly** é uma aplicação web moderna e completa para **organizar, catalog
 - 📚 **CRUD completo** - Criar, Ler, Atualizar e Deletar livros
 - 🔍 **Filtros avançados** com busca, gênero, status e ordenação
 - 🌙 **Dark Mode completo** com 3 modos e persistência
-- 📱 **Design responsivo** mobile-first 
+- 📱 **Design responsivo** mobile-first
 - 🚀 **Server Actions** do Next.js 15 para performance otimizada
 - 🗂️ **Persistência de dados** com sistema de arquivos JSON
 - ♿ **Acessibilidade** WCAG compliant
@@ -22,8 +39,9 @@ O **Leafly** é uma aplicação web moderna e completa para **organizar, catalog
 - [Next.js 15](https://nextjs.org/) (App Router + Server Actions + Turbopack)
 - [React 19](https://react.dev/) (Server Components + Client Components)
 - [TypeScript](https://www.typescriptlang.org/) (Tipagem completa com strict mode)
-- [Tailwind CSS 4+](https://tailwindcss.com/) (Styling moderno e responsivo)
+- [Tailwind CSS 4](https://tailwindcss.com/) (Styling moderno e responsivo)
 - [Lucide React](https://lucide.dev/) (Ícones consistentes)
+- **Server Actions** do Next.js 15 para formulários otimizados
 - **API Routes** personalizadas para CRUD completo
 - **File System Storage** para persistência de dados
 
@@ -33,11 +51,11 @@ O **Leafly** é uma aplicação web moderna e completa para **organizar, catalog
 
 ### 📊 Dashboard Dinâmico ✅ COMPLETO
 
-- **Estatísticas em tempo real**:  
-  - 📚 Total de livros cadastrados  
-  - ⏱️ Livros sendo lidos  
-  - ✅ Livros finalizados  
-  - 📖 Total de páginas lidas  
+- **Estatísticas em tempo real**:
+  - 📚 Total de livros cadastrados
+  - ⏱️ Livros sendo lidos
+  - ✅ Livros finalizados
+  - 📖 Total de páginas lidas
 - 🎨 **Cards visuais** com ícones e animações
 - � **Atualização automática** quando dados mudam
 - 📱 **Layout responsivo** otimizado
@@ -81,7 +99,7 @@ O **Leafly** é uma aplicação web moderna e completa para **organizar, catalog
 ### 🗑️ Excluir Livro ✅ COMPLETO
 
 - 🗑️ **Modal de confirmação** com detalhes do livro
-- ⚠️ **Proteção contra exclusão acidental** 
+- ⚠️ **Proteção contra exclusão acidental**
 - � **Atualização automática** de listas e estatísticas
 - 🚀 **Redirecionamento inteligente** após exclusão
 - 💨 **Cache busting** para atualizações imediatas
@@ -89,7 +107,7 @@ O **Leafly** é uma aplicação web moderna e completa para **organizar, catalog
 ### 🌙 Sistema de Temas ✅ COMPLETO
 
 - ☀️ **Light Mode**: Paleta otimizada para leitura diurna
-- 🌙 **Dark Mode**: Interface escura para conforto noturno  
+- 🌙 **Dark Mode**: Interface escura para conforto noturno
 - 🖥️ **System Mode**: Detecção automática do sistema
 - 💾 **Persistência**: Preferência salva entre sessões
 - 🔄 **Toggle suave** com animações de transição
@@ -131,11 +149,12 @@ O **Leafly** é uma aplicação web moderna e completa para **organizar, catalog
 
 ### 🎨 Componentes Reutilizáveis
 
-- **BookForm** - Formulário híbrido para criar/editar
-- **ConfirmModal** - Modal de confirmação reutilizável  
+- **BookForm** - Formulário híbrido para criar/editar (Server Actions + fetch)
+- **ConfirmModal** - Modal de confirmação reutilizável
 - **Toast** - Sistema de notificações
-- **StarRating** - Componente de avaliação
-- **ThemeToggle** - Controle de temas
+- **StarRating** - Componente de avaliação interativo
+- **Button/Card** - Componentes base do shadcn/ui
+- **useDeleteBook** - Hook customizado para deleção
 
 ---
 
@@ -157,7 +176,7 @@ npm -v   # v8.0.0 ou superior
 ```bash
 # Clonar o repositório
 git clone https://github.com/LilianMS/BookShelf.git
-cd Leafly
+cd BookShelf
 
 # Instalar dependências
 npm install
@@ -186,14 +205,8 @@ npm start
 ### 5. Comandos Úteis
 
 ```bash
-# Verificar TypeScript
-npm run type-check
-
 # Linting
 npm run lint
-
-# Linting com correção automática
-npm run lint:fix
 ```
 
 ---
@@ -206,7 +219,7 @@ npm run lint:fix
 
 ### 2. 📚 Gerenciar Livros
 - **Visualizar**: Navegue pela biblioteca com filtros avançados
-- **Adicionar**: Use o botão "+" ou vá em `/livros/adicionar`
+- **Adicionar**: Use o botão "+" ou vá em `/livros/add`
 - **Editar**: Clique em "Editar" na página de detalhes do livro
 - **Deletar**: Use o botão "Deletar" com confirmação de segurança
 
@@ -237,8 +250,8 @@ Este projeto foi desenvolvido como trabalho acadêmico. Para contribuições:
 
 ### 👥 Participantes do projeto
 
-- **Geraldo George Trindade Costa** 
-- **Lilian Mendes Silva dos Santos** 
+- **Geraldo George Trindade Costa**
+- **Lilian Mendes Silva dos Santos**
 - **Juliana Cristina Alves Fioretti**
 - **Edmilson Junior**
 - **Christal Camillo**
@@ -255,11 +268,13 @@ Leafly/
 │   │   └── livros/              # Sistema de livros
 │   │       ├── [id]/            # Página de detalhes dinâmica
 │   │       │   ├── page.tsx     # Visualização do livro
-│   │       │   └── editar/      # Edição de livros
+│   │       │   └── edit/        # Edição de livros
 │   │       │       └── page.tsx
-│   │       ├── adicionar/       # Adicionar novo livro
+│   │       ├── add/             # Adicionar novo livro
 │   │       │   └── page.tsx
 │   │       └── page.tsx         # Lista com filtros
+│   ├── actions/                 # Server Actions Next.js 15
+│   │   └── books.ts            # Server Actions para CRUD
 │   ├── api/                     # API Routes Next.js 15
 │   │   ├── books/              # CRUD completo de livros
 │   │   │   ├── route.ts        # GET/POST global
@@ -280,16 +295,19 @@ Leafly/
 ├── components/ui/             # Componentes reutilizáveis
 │   ├── BookForm.tsx          # Formulário híbrido de livros
 │   ├── ConfirmModal.tsx      # Modal de confirmação
-│   ├── Toast.tsx             # Sistema de notificações
+│   ├── toast.tsx             # Sistema de notificações
 │   ├── StarRating.tsx        # Componente de avaliação
-│   ├── ThemeToggleButton.tsx # Controle de temas
+│   ├── button.tsx            # Componente de botão
+│   ├── card.tsx              # Componente de card
 │   └── useDeleteBook.ts      # Hook para deleção
+├── hooks/                    # Hooks customizados
+│   └── useTheme.tsx         # Hook para sistema de temas
 ├── lib/                      # Utilitários e configurações
 │   ├── bookStorage.ts        # Sistema de persistência
+│   ├── constants.ts          # Constantes da aplicação
 │   └── utils.ts              # Funções utilitárias
 ├── data/                     # Dados persistidos
-│   ├── books.json           # Base de dados dos livros
-│   └── dashboard.json       # Cache do dashboard
+│   └── books.json           # Base de dados dos livros
 ├── types/                    # Definições TypeScript
 │   └── books.ts             # Tipos completos da aplicação
 └── public/                  # Arquivos estáticos
@@ -304,31 +322,31 @@ Leafly/
 
 - **CRUD Completo** - Criar, Ler, Atualizar, Deletar livros
 - **API REST** - Endpoints completos com Next.js 15
-- **Server Actions** - Forms otimizados com Server Actions
+- **Server Actions** - Formulários otimizados com `app/actions/books.ts`
 - **Filtros Avançados** - Busca, gênero, status, ordenação
 - **URL State Management** - Filtros preservados na URL
 - **Sistema de Temas** - Light/Dark/System com persistência
 - **Interface Responsiva** - Mobile-first design
-- **Persistência de Dados** - File system storage
-- **Cache Management** - Atualizações em tempo real
-- **TypeScript Completo** - Tipagem rigorosa
+- **Persistência de Dados** - File system storage com BookStorage
+- **Cache Management** - Revalidação com `revalidatePath`
+- **TypeScript Completo** - Tipagem rigorosa sem erros
 - **Componentes Reutilizáveis** - Arquitetura modular
 
 ### 🎯 Próximas Melhorias (Opcionais)
 
-1. **Recursos Avançados** �
+1. **Recursos Avançados** 🔮
    - [ ] Sistema de progresso de leitura com páginas
    - [ ] Metas de leitura personalizadas
    - [ ] Estatísticas avançadas e gráficos
    - [ ] Sistema de tags customizáveis
 
-2. **Integrações** �
+2. **Integrações** 🌐
    - [ ] API do Google Books para busca automática
    - [ ] Export/Import de dados (CSV, JSON)
    - [ ] Backup automático na nuvem
    - [ ] PWA com offline support
 
-3. **Social Features** �
+3. **Social Features** 👥
    - [ ] Compartilhamento de listas
    - [ ] Sistema de recomendações
    - [ ] Reviews e comentários
@@ -339,7 +357,7 @@ Leafly/
 O **Leafly** está **100% funcional** e atende a todos os requisitos do projeto:
 
 - ✅ **Interface moderna** e responsiva
-- ✅ **CRUD completo** funcionando perfeitamente  
+- ✅ **CRUD completo** funcionando perfeitamente
 - ✅ **Persistência de dados** robusta
 - ✅ **Performance otimizada** com Next.js 15
 - ✅ **Código limpo** e bem documentado
@@ -361,10 +379,11 @@ O **Leafly** está **100% funcional** e atende a todos os requisitos do projeto:
 ### 🏗️ Padrões de Arquitetura
 
 - **Server Components**: Para renderização server-side otimizada
-- **Server Actions**: Para mutações de dados sem APIs REST tradicionais
+- **Server Actions**: Para mutações de dados com `app/actions/books.ts`
 - **Client Components**: Apenas para interatividade específica
 - **File-based Storage**: Sistema de persistência simples e eficaz
-- **Hybrid Forms**: Formulários que funcionam com e sem JavaScript
+- **Hybrid Forms**: Formulários que funcionam com Server Actions e fetch
+- **API Routes**: Endpoints REST completos em `app/api/books/`
 
 ### 📊 Performance
 
@@ -372,6 +391,114 @@ O **Leafly** está **100% funcional** e atende a todos os requisitos do projeto:
 - **Server-side Rendering**: Páginas otimizadas para SEO com Server Components
 - **Automatic Code Splitting**: Divisão automática de código por rota (Next.js)
 - **Cache Management**: Sistema de cache busting para atualizações em tempo real
+
+### 🚀 Server Actions Detalhado
+
+O Leafly utiliza **Server Actions** do Next.js 15 para operações de mutação de dados, proporcionando performance superior e experiência de usuário otimizada:
+
+#### 📁 **Arquivo:** `app/actions/books.ts`
+
+```typescript
+// Criar novo livro
+export async function createBook(formData: FormData) {
+  // Extração e validação de dados
+  const bookData = extractFormData(formData)
+
+  // Persistência com BookStorage
+  await BookStorage.addBook(bookData)
+
+  // Cache busting automático
+  revalidatePath('/livros')
+  revalidatePath('/')
+
+  // Redirecionamento
+  redirect('/livros')
+}
+
+// Atualizar livro existente
+export async function updateBook(id: string, formData: FormData)
+
+// Deletar livro
+export async function deleteBook(id: string)
+```
+
+#### ✨ **Vantagens das Server Actions:**
+- **Sem JavaScript necessário** - Formulários funcionam mesmo com JS desabilitado
+- **Validação server-side** - Segurança garantida no servidor
+- **Cache automático** - Revalidação inteligente com `revalidatePath()`
+- **Performance otimizada** - Menos requests cliente-servidor
+- **TypeScript nativo** - Tipagem completa end-to-end
+
+### 💨 Sistema de Cache Busting
+
+Para garantir que os dados sempre estejam atualizados, o Leafly implementa um sistema robusto de **cache busting**:
+
+#### 🔄 **Estratégias Utilizadas:**
+
+1. **Server Actions com revalidatePath()**
+```typescript
+// Após operações de mutação
+revalidatePath('/livros')        // Revalida página específica
+revalidatePath('/')              // Revalida dashboard
+revalidatePath('/livros', 'page') // Força revalidação
+revalidatePath('/', 'layout')     // Revalida layout inteiro
+```
+
+2. **API Routes com cache: 'no-store'**
+```typescript
+// Em páginas que consomem dados dinâmicos
+const response = await fetch('/api/books?_t=' + Date.now(), {
+  cache: 'no-store'  // Força busca sempre atualizada
+})
+```
+
+3. **Timestamp Query Parameter**
+```typescript
+// Cache busting manual quando necessário
+const books = await fetch(`/api/books?_t=${Date.now()}`)
+```
+
+#### 🎯 **Resultado:**
+- **Dashboard sempre atualizado** após criar/editar/deletar livros
+- **Listas sincronizadas** entre diferentes páginas
+- **Dados consistentes** em toda aplicação
+- **UX fluida** sem necessidade de refresh manual
+
+### 📸 Screenshots da Aplicação
+
+#### 🏠 **Dashboard Principal**
+![Dashboard do Leafly](./public/screenshots/dashboard.png)
+
+#### 📚 **Biblioteca com Filtros**
+![Biblioteca com Filtros](./public/screenshots/library.png)
+![Biblioteca com Filtros](./public/screenshots/library-filters.png)
+
+#### 👁️ **Visualização Detalhada**
+![Visualização Detalhada do Livro](./public/screenshots/book-preview1.png)
+![Visualização Detalhada do Livro](./public/screenshots/book-preview2.png)
+
+#### ➕ **Formulário de Adicionar/Editar**
+![Formulário de Adicionar/Editar Livro](./public/screenshots/book-form1.png)
+![Formulário de Adicionar/Editar Livro](./public/screenshots/book-form2.png)
+
+#### 🌙 **Sistema de Temas**
+![Demonstração dos modos de tema](./public/screenshots/theme-modes.png)
+
+```
+[☀️ Light Mode] ↔️ [🌙 Dark Mode] ↔️ [🖥️ System Mode]
+┌─────────────────────────────────────────────────────────┐
+│ 🌞 Light: Fundo branco, texto escuro, accent verde     │
+│ 🌙 Dark:  Fundo escuro, texto claro, accent verde      │
+│ 🖥️ System: Segue preferência do SO automaticamente     │
+└─────────────────────────────────────────────────────────┘
+```
+
+
+#### 📱 **Mobile Responsivo**
+
+![Layout Mobile](./public/screenshots/mobile-layout.png)
+
+> **💡 Dica:** Execute `npm run dev` e navegue pela aplicação para ver todos esses recursos em ação!
 
 ---
 
@@ -398,16 +525,6 @@ O **Leafly** está **100% funcional** e atende a todos os requisitos do projeto:
 
 ---
 
-## 📞 Suporte
-
-Para dúvidas ou suporte técnico:
-
-- 📧 **Email**: [contato@projeto-bookshelf.com](mailto:contato@projeto-bookshelf.com)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/LilianMS/BookShelf/issues)
-- 📖 **Documentação**: Este README contém todas as informações necessárias
-
----
-
 ## 📄 Licença
 
 Este projeto é desenvolvido para fins acadêmicos. Todos os direitos reservados aos desenvolvedores.
@@ -419,7 +536,7 @@ Este projeto é desenvolvido para fins acadêmicos. Todos os direitos reservados
 Agradecemos a todos que contribuíram para o desenvolvimento deste projeto:
 
 - **Mentores e Professores** pelo suporte técnico
-- **Comunidade Next.js** pela documentação excelente  
+- **Comunidade Next.js** pela documentação excelente
 - **Contribuidores Open Source** pelas ferramentas utilizadas
 
 ---
@@ -429,5 +546,7 @@ Agradecemos a todos que contribuíram para o desenvolvimento deste projeto:
 **Leafly** - Sua Biblioteca Digital Completa 🌿
 
 *Desenvolvido com ❤️ usando Next.js 15 e React 19*
+<br />
+<img src="./public/logo_codificai_b.png" alt="Logo Codificai" width="180" />
 
 </div>
