@@ -467,22 +467,21 @@ const books = await fetch(`/api/books?_t=${Date.now()}`)
 ### 📸 Screenshots da Aplicação
 
 #### 🏠 **Dashboard Principal**
-![Dashboard do Leafly](./public/screenshots/dashboard.png)
-
+<img src="./public/screenshots/dashboard.png" alt="Dashboard do Leafly" width="150"/>
 #### 📚 **Biblioteca com Filtros**
-![Biblioteca com Filtros](./public/screenshots/library.png)
-![Biblioteca com Filtros](./public/screenshots/library-filters.png)
+<img src="./public/screenshots/library.png" alt="Biblioteca com Filtros" width="150"/>
+<img src="./public/screenshots/library-filters.png" alt="Biblioteca com Filtros" width="150"/>
 
 #### 👁️ **Visualização Detalhada**
-![Visualização Detalhada do Livro](./public/screenshots/book-preview1.png)
-![Visualização Detalhada do Livro](./public/screenshots/book-preview2.png)
+<img src="./public/screenshots/book-preview1.png" alt="Visualização Detalhada do Livro" width="150"/>
+<img src="./public/screenshots/book-preview2.png" alt="Visualização Detalhada do Livro" width="150"/>
 
 #### ➕ **Formulário de Adicionar/Editar**
-![Formulário de Adicionar/Editar Livro](./public/screenshots/book-form1.png)
-![Formulário de Adicionar/Editar Livro](./public/screenshots/book-form2.png)
+<img src="./public/screenshots/book-form1.png" alt="Formulário de Adicionar/Editar Livro" width="150"/>
+<img src="./public/screenshots/book-form2.png" alt="Formulário de Adicionar/Editar Livro" width="150"/>
 
 #### 🌙 **Sistema de Temas**
-![Demonstração dos modos de tema](./public/screenshots/theme-modes.png)
+<img src="./public/screenshots/theme-modes.png" alt="Demonstração dos modos de tema" width="150"/>
 
 ```
 [☀️ Light Mode] ↔️ [🌙 Dark Mode] ↔️ [🖥️ System Mode]
@@ -492,11 +491,6 @@ const books = await fetch(`/api/books?_t=${Date.now()}`)
 │ 🖥️ System: Segue preferência do SO automaticamente     │
 └─────────────────────────────────────────────────────────┘
 ```
-
-
-#### 📱 **Mobile Responsivo**
-
-![Layout Mobile](./public/screenshots/mobile-layout.png)
 
 > **💡 Dica:** Execute `npm run dev` e navegue pela aplicação para ver todos esses recursos em ação!
 
@@ -545,8 +539,9 @@ Agradecemos a todos que contribuíram para o desenvolvimento deste projeto:
 
 **Leafly** - Sua Biblioteca Digital Completa 🌿
 
-*Desenvolvido com ❤️ usando Next.js 15 e React 19*
+*Desenvolvido com ❤️ Equipe Codificaí  |  Programa Desenvolve*
 <br />
-<img src="./public/logo_codificai_b.png" alt="Logo Codificai" width="180" />
+<br />
+<img src="./public/logo_codificai_b.png" alt="Logo Codificai" width="80" />
 
 </div>
